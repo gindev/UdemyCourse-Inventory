@@ -39,11 +39,10 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-efect">
                         <i class="ri-mail-send-line"></i>
-                        <span>Manage Email</span>
+                        <span>Manage Customers</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="email-inbox.html">Inbox</a></li>
-                        <li><a href="email-read.html">Read Email</a></li>
+                        <li><a href="{{ route('customer.all') }}">All Customers</a></li>
                     </ul>
                 </li>
             </ul>
