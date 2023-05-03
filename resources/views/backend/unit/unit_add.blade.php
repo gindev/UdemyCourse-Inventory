@@ -15,7 +15,7 @@
                             <div class="row mb-3">
                                 <label for="name" class="col-sm-2 col-form-label">Unit Name</label>
                                 <div class="col-sm-10 form-group">
-                                    <input class="form-control" type="text" name="name" value="">
+                                    <input class="form-control" type="text" name="name" value="" autofocus>
                                 </div>
                             </div>
                             <!-- end row -->
@@ -52,17 +52,6 @@
             unhighlight: function(element, errorClass, validClass){
                 $(element).removeClass('is-invalid');
             },
-        });
-    });
-    
-    $(document).ready(function() {
-        $('#customer_image').change(function(e){
-            var reader = new FileReader();
-            reader.onload = function(e){
-                $('#customer_image_preview').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(e.target.files['0']);
         });
     });
 </script>

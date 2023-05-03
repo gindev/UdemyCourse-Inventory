@@ -8,19 +8,18 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row mb-3">
-                            <h4 class="card-title">Edit Unit Page</h4>
+                            <h4 class="card-title">Add Category Page</h4>
                         </div>
-                        <form id="myForm" method="post" action="{{ route('unit.update') }}">
+                        <form id="myForm" method="post" action="{{ route('category.store') }}">
                             @csrf
-                            <input type="hidden" name="id" value="{{ $unit->id }}">
                             <div class="row mb-3">
-                                <label for="name" class="col-sm-2 col-form-label">Unit Name</label>
+                                <label for="name" class="col-sm-2 col-form-label">Category Name</label>
                                 <div class="col-sm-10 form-group">
-                                    <input class="form-control" type="text" name="name" value="{{ $unit->name }}" autofocus>
+                                    <input class="form-control" type="text" name="name" value="" autofocus>
                                 </div>
                             </div>
                             <!-- end row -->
-                            <input type="submit" class="btn btn-info waves-effect waves-light" value="Update Unit">
+                            <input type="submit" class="btn btn-info waves-effect waves-light" value="Add Category">
                         </form>
                     </div>
                 </div>
@@ -39,7 +38,7 @@
             },
             messages: {
                 name: {
-                    required: 'Please enter unit name',
+                    required: 'Please enter category name',
                 },
             },
             errorElement: 'span',
