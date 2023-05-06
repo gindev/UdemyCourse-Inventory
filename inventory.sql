@@ -31,7 +31,7 @@ CREATE TABLE `categories` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,9 +41,10 @@ CREATE TABLE `categories` (
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
 INSERT INTO `categories` VALUES
-(1,'Computer',1,1,1,'2023-05-03 14:41:22','2023-05-03 15:09:51'),
-(3,'Cement',1,1,1,'2023-05-03 14:48:55','2023-05-03 15:10:27'),
-(4,'Camera',1,1,1,'2023-05-03 14:49:20','2023-05-03 15:10:34');
+(1,'Desktop',1,1,1,'2023-05-06 05:43:32','2023-05-06 05:45:40'),
+(2,'LED TV',1,1,NULL,'2023-05-06 05:43:37',NULL),
+(3,'Smart Phone',1,1,1,'2023-05-06 05:43:44','2023-05-06 05:43:57'),
+(4,'Laptop',1,1,1,'2023-05-06 05:44:01','2023-05-06 05:45:04');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -67,7 +68,7 @@ CREATE TABLE `customers` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -77,8 +78,9 @@ CREATE TABLE `customers` (
 LOCK TABLES `customers` WRITE;
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
 INSERT INTO `customers` VALUES
-(1,'Test customer','upload/customer/1764869553681175.jpg','34987234823048230','dteasadsa@dasda.dad','djasl dalskj dlsadjas ldkjasld',1,1,NULL,'2023-05-03 07:46:05',NULL),
-(2,'Test customer 4234234234','upload/customer/1764880295640612.jpg','08942384023840239842','asdkasdka@dasdasda.dasd','dskjas ldsa;jk;ldk ad;akd;aslkda;s ldka',1,1,1,'2023-05-03 07:47:18','2023-05-03 10:36:49');
+(1,'Ivan Petrov','upload/customer/1765133481329468.jpg','324082340293482','ivan.petrov@gmail.com','Sofia, Bulgaria',1,1,NULL,'2023-05-06 05:41:06',NULL),
+(2,'Goergi Ivanov','upload/customer/1765133512613014.jpg','4203487320482','georgi.ivanov@gmail.com','Varna, Bulgaria',1,1,NULL,'2023-05-06 05:41:36',NULL),
+(3,'Aleksander Georgiev','upload/customer/1765133573528645.jpg','02347882304238042','alex.georgiev@gmail.com','Pernik, Bulgaria',1,1,NULL,'2023-05-06 05:42:34',NULL);
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -123,7 +125,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,7 +142,8 @@ INSERT INTO `migrations` VALUES
 (5,'2023_04_30_160951_create_suppliers_table',2),
 (6,'2023_05_01_074755_create_customers_table',3),
 (7,'2023_05_03_155204_create_units_table',4),
-(8,'2023_05_03_172022_create_categories_table',5);
+(8,'2023_05_03_172022_create_categories_table',5),
+(9,'2023_05_03_182454_create_products_table',6);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,6 +205,44 @@ LOCK TABLES `personal_access_tokens` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `products`
+--
+
+DROP TABLE IF EXISTS `products`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `products` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `supplier_id` int(11) NOT NULL,
+  `unit_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `quantity` double NOT NULL DEFAULT 0,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `products`
+--
+
+LOCK TABLES `products` WRITE;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` VALUES
+(1,1,3,4,'Laptop Stantek',0,1,1,NULL,'2023-05-06 05:44:55',NULL),
+(2,4,3,1,'All In One',0,1,1,NULL,'2023-05-06 05:46:05',NULL),
+(3,1,3,3,'Nokia 3310',0,1,1,NULL,'2023-05-06 05:46:37',NULL),
+(4,2,3,2,'Philips TV 45\"',0,1,1,NULL,'2023-05-06 05:47:06',NULL),
+(5,5,2,3,'Smar Phone Screws',0,1,1,NULL,'2023-05-06 05:47:56',NULL);
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `suppliers`
 --
 
@@ -220,7 +261,7 @@ CREATE TABLE `suppliers` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -230,8 +271,11 @@ CREATE TABLE `suppliers` (
 LOCK TABLES `suppliers` WRITE;
 /*!40000 ALTER TABLE `suppliers` DISABLE KEYS */;
 INSERT INTO `suppliers` VALUES
-(1,'Ivan Petrov','+359897 042 778','test@test.com','Local residence Sofia',1,1,NULL,'2023-04-30 14:34:33',NULL),
-(2,'Todor Dimitrov','895473498723049','dasdasdl@fsadas.das','Sofia, Bulgaira',1,1,1,'2023-04-30 14:35:39','2023-04-30 14:50:01');
+(1,'Stantek LTd.','430403498203942','office@stantek.com','Sofia, Bulgaira',1,1,NULL,'2023-05-06 05:36:33',NULL),
+(2,'Most Computers LTd.','3209482340238402','office@most.bg','Sofia, Bulgaira',1,1,NULL,'2023-05-06 05:37:13',NULL),
+(3,'Jar Computers LTd.','34094823094823','office@jar.bg','Sofia, Bulgaira',1,1,NULL,'2023-05-06 05:37:34',NULL),
+(4,'Stemo LTd.','32409840923840','office@stemo.bg','Sofia, Bulgaria',1,1,NULL,'2023-05-06 05:39:32',NULL),
+(5,'Vali Bulgaria LTd.','349084089420','office@vali.bg','Veiko Tarnovo, Bulgaria',1,1,NULL,'2023-05-06 05:40:03',NULL);
 /*!40000 ALTER TABLE `suppliers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -251,7 +295,7 @@ CREATE TABLE `units` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -261,9 +305,9 @@ CREATE TABLE `units` (
 LOCK TABLES `units` WRITE;
 /*!40000 ALTER TABLE `units` DISABLE KEYS */;
 INSERT INTO `units` VALUES
-(1,'PCG',1,1,1,'2023-05-03 13:18:25','2023-05-03 13:33:57'),
-(2,'KG',1,1,1,'2023-05-03 13:27:09','2023-05-03 13:34:04'),
-(4,'GM',1,1,NULL,'2023-05-03 13:34:22',NULL);
+(1,'GM',1,1,NULL,'2023-05-06 05:42:58',NULL),
+(2,'KG',1,1,NULL,'2023-05-06 05:43:08',NULL),
+(3,'PCG',1,1,NULL,'2023-05-06 05:43:15',NULL);
 /*!40000 ALTER TABLE `units` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -311,4 +355,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-03 21:18:58
+-- Dump completed on 2023-05-06 11:50:00

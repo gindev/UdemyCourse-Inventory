@@ -63,6 +63,15 @@
                         <li><a href="{{ route('category.all') }}">All Categories</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-efect">
+                        <i class="ri-mail-send-line"></i>
+                        <span>Manage Products</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('product.all') }}">All Products</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->
