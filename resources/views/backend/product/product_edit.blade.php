@@ -21,7 +21,7 @@
                             </div>
                             <!-- end row -->
                             <div class="row mb-3">
-                                <label for="mobile_number" class="col-sm-2 col-form-label">Supplier Name</label>
+                                <label for="supplier_id" class="col-sm-2 col-form-label">Supplier Name</label>
                                 <div class="col-sm-10 form-group">
                                     <select class="form-select" aria-label="select supplier" name="supplier_id" id="supplier_id">
                                         <option value="">Please select a supplier</option>
@@ -33,7 +33,7 @@
                             </div>
                             <!-- end row -->
                             <div class="row mb-3">
-                                <label for="mobile_number" class="col-sm-2 col-form-label">Unit Name</label>
+                                <label for="unit_id" class="col-sm-2 col-form-label">Unit Name</label>
                                 <div class="col-sm-10 form-group">
                                     <select class="form-select" aria-label="select unit" name="unit_id" id="unit_id">
                                         <option value="">Please select a unit</option>
@@ -45,7 +45,7 @@
                             </div>
                             <!-- end row -->
                             <div class="row mb-3">
-                                <label for="mobile_number" class="col-sm-2 col-form-label">Category Name</label>
+                                <label for="category_id" class="col-sm-2 col-form-label">Category Name</label>
                                 <div class="col-sm-10 form-group">
                                     <select class="form-select" aria-label="select category" name="category_id" id="category_id">
                                         <option value="">Please select a category</option>

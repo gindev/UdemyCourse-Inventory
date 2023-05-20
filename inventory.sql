@@ -1,8 +1,8 @@
--- MariaDB dump 10.19  Distrib 10.11.2-MariaDB, for osx10.18 (arm64)
+-- MariaDB dump 10.19  Distrib 10.11.3-MariaDB, for osx10.18 (arm64)
 --
 -- Host: localhost    Database: inventory
 -- ------------------------------------------------------
--- Server version	10.11.2-MariaDB
+-- Server version	10.11.3-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -125,7 +125,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,7 +143,8 @@ INSERT INTO `migrations` VALUES
 (6,'2023_05_01_074755_create_customers_table',3),
 (7,'2023_05_03_155204_create_units_table',4),
 (8,'2023_05_03_172022_create_categories_table',5),
-(9,'2023_05_03_182454_create_products_table',6);
+(9,'2023_05_03_182454_create_products_table',6),
+(10,'2023_05_06_085513_create_purchases_table',7);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -235,11 +236,50 @@ LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
 INSERT INTO `products` VALUES
 (1,1,3,4,'Laptop Stantek',0,1,1,NULL,'2023-05-06 05:44:55',NULL),
-(2,4,3,1,'All In One',0,1,1,NULL,'2023-05-06 05:46:05',NULL),
+(2,4,3,1,'All In One',29,1,1,NULL,'2023-05-06 05:46:05','2023-05-20 09:56:47'),
 (3,1,3,3,'Nokia 3310',0,1,1,NULL,'2023-05-06 05:46:37',NULL),
 (4,2,3,2,'Philips TV 45\"',0,1,1,NULL,'2023-05-06 05:47:06',NULL),
 (5,5,2,3,'Smar Phone Screws',0,1,1,NULL,'2023-05-06 05:47:56',NULL);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `purchases`
+--
+
+DROP TABLE IF EXISTS `purchases`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `purchases` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `supplier_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `number` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `qty` double NOT NULL,
+  `single_price` double NOT NULL,
+  `total_price` double NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0=Pending, 1=Approved',
+  `created_by` int(11) NOT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `purchases`
+--
+
+LOCK TABLES `purchases` WRITE;
+/*!40000 ALTER TABLE `purchases` DISABLE KEYS */;
+INSERT INTO `purchases` VALUES
+(2,1,4,1,'purchase02312141','2023-05-21','Second hand',26,250,6500,0,1,1,'2023-05-20 08:28:59','2023-05-20 09:39:36'),
+(3,4,1,2,'purchase02312141','2023-05-21','Second hand',29,320,9280,1,1,1,'2023-05-20 08:28:59','2023-05-20 09:56:47');
+/*!40000 ALTER TABLE `purchases` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -355,4 +395,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-06 11:50:00
+-- Dump completed on 2023-05-20 16:02:05
